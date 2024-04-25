@@ -11,6 +11,9 @@ def main():
     bold = st.checkbox("Negrita")
     underline = st.checkbox("Subrayado")
     
+    # Color del texto
+    color = st.color_picker("Color del Texto", "#000000")
+    
     # Aplicar formato al texto
     formatted_text = input_text
     if italic:
@@ -20,10 +23,15 @@ def main():
     if underline:
         formatted_text = f"__{formatted_text}__"
     
-    # Botón para convertir a mayúsculas
-    if st.button("Aplicar Formato"):
-        st.write("Texto con formato aplicado:")
-        st.write(formatted_text)
+    # Convertir a mayúsculas
+    formatted_text = formatted_text.upper()
+    
+    # Aplicar color al texto
+    formatted_text = f'<span style="color:{color}">{formatted_text}</span>'
+    
+    # Botón para mostrar el texto con formato
+    if st.button("Mostrar Texto con Formato"):
+        st.markdown(formatted_text, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
